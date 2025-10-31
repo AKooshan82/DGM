@@ -1,5 +1,5 @@
 \ProvidesPackage{uni-environments}[2023/02/23 ...]
-
+\usepackage{subfiles}
 \newenvironment{conclusion}{
     \begin{center}
         \rule{0.9\linewidth}{0.5pt}
@@ -77,7 +77,7 @@
 \newcommand*{\hintstyle}[1]{{\hintfont#1}}
 \newcommand*{\hintfont}{}
 \renewcommand*{\sectionfont}{\Large\bfseries\upshape}
-\renewcommand*{\subsectionfont}{\large\bfseries\itshape}
+\renewcommand*{\subsectionfont}{\large\bfseries}
 \renewcommand*{\hintfont}{\bfseries}
 \newlength{\baseletterheight}
 \settoheight{\baseletterheight}{\sectionstyle{o}}
@@ -95,19 +95,19 @@
     \phantomsection{}% reset the anchor for hyperrefs
     \addcontentsline{toc}{section}{#1}%
     \hspace*{-\columntoffset}
-    \parbox[t]{\hintscolumnwidth}{\raggedleft\raisebox{\baseletterheight}{\color{color1}\rule{\hintscolumnwidth}{0.95ex}}}%
-    \hspace{\separatorcolumnwidth}%
+    %\parbox[t]{\hintscolumnwidth}{\raggedleft\raisebox{\baseletterheight}{\color{color1}\rule{\hintscolumnwidth}{0.95ex}}}%
+    %\hspace{\separatorcolumnwidth}%
     \parbox[t]{\maincolumnwidth}{\strut\sectionstyle{#1}}%
     \par\nobreak\addvspace{1ex}\@afterheading
 }% to avoid a pagebreak after the heading
 
 \newcommand*{\sectionstar}[1]{%
-    \par\addvspace{2.5ex}%
+    \par\addvspace{1.5ex}%
     \phantomsection{}% reset the anchor for hyperrefs
     \addcontentsline{toc}{section}{#1}%
     \hspace*{-\columntoffset}
-    \parbox[t]{\hintscolumnwidth}{\raggedleft\raisebox{\baseletterheight}{\color{color1}\rule{\hintscolumnwidth}{0.95ex}}}%
-    \hspace{\separatorcolumnwidth}%
+    %\parbox[t]{\hintscolumnwidth}{\raggedleft\raisebox{\baseletterheight}{\color{color1}\rule{\hintscolumnwidth}{0.95ex}}}%
+    %\hspace{\separatorcolumnwidth}%
     \parbox[t]{\maincolumnwidth}{\strut\sectionstyle{#1}}%
     \par\nobreak\addvspace{1ex}\@afterheading
 }% to avoid a pagebreak after the heading
@@ -124,8 +124,8 @@
     \phantomsection{}% reset the anchor for hyperrefs
     \addcontentsline{toc}{subsection}{#1}%
     \hspace*{-\columntoffset}
-    \parbox[t]{0.5\hintscolumnwidth}{\strut\raggedleft\raisebox{\baseletterheight}{\color{color1}\rule{0.5\hintscolumnwidth}{0.95ex}}}%
-    \hspace{\separatorcolumnwidth}%
+    %\parbox[t]{0.5\hintscolumnwidth}{\strut\raggedleft\raisebox{\baseletterheight}{\color{color1}\rule{0.5\hintscolumnwidth}{0.95ex}}}%
+    %\hspace{\separatorcolumnwidth}%
     {\strut\subsectionstyle{#1}}
     \par\nobreak\addvspace{0.5ex}\@afterheading
 }% to avoid a pagebreak after the heading
@@ -135,8 +135,8 @@
     \phantomsection{}% reset the anchor for hyperrefs
     \addcontentsline{toc}{subsection}{#1}%
     \hspace*{-\columntoffset}
-    \parbox[t]{0.5\hintscolumnwidth}{\strut\raggedleft\raisebox{\baseletterheight}{\color{color1}\rule{0.5\hintscolumnwidth}{0.95ex}}}%
-    \hspace{\separatorcolumnwidth}%
+    %\parbox[t]{0.5\hintscolumnwidth}{\strut\raggedleft\raisebox{\baseletterheight}{\color{color1}\rule{0.5\hintscolumnwidth}{0.95ex}}}%
+    %\hspace{\separatorcolumnwidth}%
     {\strut\subsectionstyle{#1}}
     \par\nobreak\addvspace{0.5ex}\@afterheading
 }% to avoid a pagebreak after the heading

@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.6)  28 OCT 2025 22:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.6)  31 OCT 2025 22:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/Users/kooshan/Documents/7th semester/DGM/HWs/HW1/main.tex"
-(/Users/kooshan/Documents/7th semester/DGM/HWs/HW1/main.tex
+**"/Users/kooshan/Documents/7th semester/DGM/HWs/HW1/Theory/main.tex"
+(/Users/kooshan/Documents/7th semester/DGM/HWs/HW1/Theory/main.tex
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-08-13>
 (/usr/local/texlive/2025/texmf-dist/tex/latex/base/article.cls
@@ -595,6 +595,11 @@ LaTeX Info: Redefining \addtolength on input line 87.
 Package: uni-variable 2023/02/23 ...
 ) (./uni-environments.sty
 Package: uni-environments 2023/02/23 ...
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/subfiles/subfiles.sty
+Package: subfiles 2020/11/14 v2.2 Multi-file projects (package)
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/import/import.sty
+Package: import 2020/04/01  v 6.2
+))
 \quotewidth=\skip58
 \hintscolumnwidth=\skip59
 \separatorcolumnwidth=\skip60
@@ -728,7 +733,7 @@ Package: inputenc 2024/02/08 v1.3d Input encoding file
 \inpenc@prehook=\toks44
 \inpenc@posthook=\toks45
 )
-<logo/logo.png, id=91, 185.69376pt x 226.8475pt>
+<logo/logo.png, id=51, 185.69376pt x 226.8475pt>
 File: logo/logo.png Graphic file (type png)
 <use logo/logo.png>
 Package pdftex.def Info: logo/logo.png  used on input line 22.
@@ -745,50 +750,19 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [1
 
 {/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./logo/logo.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 23--23
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 23--23
-
- []
-
-<logo/logo2.png, id=103, 642.4pt x 642.4pt>
+<logo/logo2.png, id=61, 642.4pt x 642.4pt>
 File: logo/logo2.png Graphic file (type png)
 <use logo/logo2.png>
 Package pdftex.def Info: logo/logo2.png  used on input line 23.
 (pdftex.def)             Requested size: 72.55157pt x 72.54623pt.
-
+ (./Questions/q1.tex)
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.44 \clearpage
-                [1 <./logo/logo2.png>] (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2024/09/23 1.10c listings language file
-) (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang2.sty
-File: lstlang2.sty 2024/09/23 1.10c listings language file
-) (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang3.sty
-File: lstlang3.sty 2024/09/23 1.10c listings language file
-)
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 55.
- (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2024/09/23 1.10c listings language file
-)
-
-[2
-
-]
-
-[3
-
-{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-
-[4]
-
-[5] 
+l.52 \clearpage
+                [1 <./logo/logo2.png>] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
 (./main.aux)
  ***********
@@ -796,21 +770,21 @@ LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-08-13>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 4FAABA1E8D7956A4D86E2EB4C3C79FFB;2204.
+(rerunfilecheck)             Checksum: 416197508151E0ADED264944B83CACE0;484.
  ) 
 Here is how much of TeX's memory you used:
- 29163 strings out of 467800
- 587449 string characters out of 5431883
- 1523371 words of memory out of 5000000
- 57239 multiletter control sequences out of 15000+600000
- 638832 words of font info for 86 fonts, out of 8000000 for 9000
+ 28484 strings out of 467800
+ 580569 string characters out of 5431883
+ 1085003 words of memory out of 5000000
+ 56628 multiletter control sequences out of 15000+600000
+ 635578 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 101i,11n,112p,480b,1465s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on main.pdf (6 pages, 253820 bytes).
+ 101i,11n,112p,487b,514s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (2 pages, 134433 bytes).
 PDF statistics:
- 277 PDF objects out of 1000 (max. 8388607)
- 206 compressed objects within 3 object streams
- 66 named destinations out of 1000 (max. 500000)
- 263 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 110 PDF objects out of 1000 (max. 8388607)
+ 61 compressed objects within 1 object stream
+ 4 named destinations out of 1000 (max. 500000)
+ 183 words of extra memory for PDF output out of 10000 (max. 10000000)
 
