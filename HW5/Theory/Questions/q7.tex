@@ -1,0 +1,44 @@
+به ازای $p\geq 2$ داریم که
+\begin{flalign*}
+    \mathbb{E}\big\lceil |a^\top X|^p\big\rceil^{\frac{1}{p}} = \mathbb{E}\big\lceil |a^\top X|^\frac{p}{2}\big\rceil^{\frac{1}{p}} \geq\textcolor{red}{*} \mathbb{E}\big\lceil |a^\top X|^2\big\rceil^\frac{1}{2}
+\end{flalign*}
+\begin{tcolorbox}[colback=yellow!10!white,colframe=red!75!black,title = اثبات \textcolor{red}{*}]
+\begin{latin}
+\begin{flalign*}
+    &Y = |a^\top x|^2&\\
+    &\left( \mathbb{E}\left[ |a^\top x|^p \right] \right)^{1/p}
+= \left( \mathbb{E}\left[ Y^{p/2} \right] \right)^{1/p} ,\quad \left( \mathbb{E}\left[ Y^{p/2} \right] \right)^{1/p}
+\ge \left( \mathbb{E}\left[ Y \right] \right)^{1/2}\\
+&\xrightarrow{\text{raise to the power of 2}}\left( \mathbb{E}\left[ Y^{p/2} \right] \right)^{2/p}
+\ge \mathbb{E}\left[ Y \right] \\
+&\varphi(t) = t^{2/p}, \quad p \ge 2 \Rightarrow \frac{2}{p} \le 1\\
+&\varphi(\mathbb{E}[Z]) \ge \mathbb{E}[\varphi(Z)] \quad \text{(Jensen)}\\
+&Z = Y^{p/2}
+\Rightarrow \varphi(\mathbb{E}[Y^{p/2}])
+= \left( \mathbb{E}\left[ Y^{p/2} \right] \right)^{2/p}
+\ge \mathbb{E}\left[ \varphi(Y^{p/2}) \right]
+= \mathbb{E}[Y]
+\end{flalign*}
+\end{latin}
+\end{tcolorbox}
+از طرف دیگر داریم که :
+\begin{flalign*}
+    &\mathbb{E}\big\lceil |a^\top X|^2\big\rceil \geq \mathbb{E}\big\lceil  \sum_{i=0}^{N} a_i^2 X_i^2\big\rceil =\sum_{i=0}^{N} a_i^2\mathbb{E}\big\lceil X_i^2 \big\rceil = a^\top a &\\
+    &\Rightarrow \sqrt{ a^\top a} \leq \mathbb{E}\big\lceil|a^\top X|^p\big\rceil^\frac{1}{p}
+\end{flalign*}
+از طرف دیگه از خواص یک متغیر زیرگوسی میدانیم که :
+\begin{flalign*}
+    &1) \mathbb{E}\big\lceil \exp(\frac{x^2}{k_4^2})\big\rceil \leq 2 \Rightarrow ||X||_{\psi_2}\leq k_4 \Rightarrow \exists c_1, k_4\leq c_1||X||_{\psi_2}&\\
+    &2) \mathbb{E}\big\lceil |X|^p\big\rceil^{\frac{1}{p}} \leq k_2\sqrt{p} ,k_2\leq c_2k_4, \quad C=c_1c_2&
+\end{flalign*}
+\begin{flalign*}
+    (1,2) \Rightarrow \mathbb{E}\big\lceil ||a^\top X||^p\big\rceil^\frac{2}{p} &\leq C^2\sqrt{p}^2 ||a^\top X||_{\psi_2}&\\
+    &\leq C^2\sqrt{p}^2 \sum_{i=1}^{N} ||a_i X_i||_{\psi}^2\\
+    &= C^2\sqrt{p}^2\sum_{i=1} a_i^2||X_i||_{\psi_2}^2\\
+    &\leq C^2\sqrt{p}^2K^2 a^\top a
+ \end{flalign*}
+ \begin{tcolorbox}[colback=yellow!10!white,colframe=red!75!black]
+     \begin{equation*}
+         \mathbb{E}\big\lceil ||a^\top X||^p\big\rceil^\frac{1}{p} \leq C\sqrt{P}K \sqrt{a^\top a} 
+     \end{equation*}
+ \end{tcolorbox}

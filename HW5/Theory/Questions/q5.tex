@@ -1,0 +1,18 @@
+\section{سوال پنجم}
+\begin{flalign*}
+    &p(z) = \exp(-z),\quad z\geq 0 &\\
+    &p(x|z) = zx\exp(-\frac{zx^2}{2}),\quad x\geq 0\\
+    &p(z|x) = \frac{p(x|z)p(z)}{p(x)} \Rightarrow \log p(z|x) = \log p(x|z) + \log p(z) - \log p(x) \\
+    &\hspace{5cm}= \log z + \log x -\frac{zx^2}{2} - z - \log p(x)\\
+    &\nabla_z \log p(z|x) = \frac{1}{z} -1 -\frac{x^2}{2}\\
+    &\log q(z|x) = 2\log \theta + \log z - \theta z,\quad z\geq 0\\
+    &\nabla_z \log q(z|x) =\frac{1}{z} -\theta \Rightarrow ||\nabla_z S_{p}(z|x) - \nabla_z S_{q}(z|x) ||^2_2 = 0 \\
+    &\Rightarrow S_{p}(z|x) - \nabla_z S_{q}(z|x) = 0 \\
+    & \frac{1}{z} -1 -\frac{x^2}{2} -\frac{1}{z} + \theta = 0 \Rightarrow \theta = \frac{x^2}{2} + 1
+\end{flalign*}
+
+\begin{tcolorbox}[colback= colback , colframe= colframe]
+    \begin{equation*}
+    \theta = \frac{x^2}{2} + 1
+    \end{equation*}
+\end{tcolorbox}

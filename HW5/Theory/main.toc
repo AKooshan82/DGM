@@ -1,0 +1,29 @@
+\contentsline {section}{فهرست مطالب\markboth {\MakeUppercase []{فهرست مطالب}}{\MakeUppercase []{فهرست مطالب}}}{1}{section*.1}%
+\contentsline {section}{سوال یک : شرایط\lr {Ergodicity}}{2}{section*.2}%
+\contentsline {subsection}{بخش اول}{2}{section*.3}%
+\contentsline {subsubsection}{اثر هر کدام از شرایط بر روی سمپلینگ}{2}{section*.4}%
+\contentsline {subsection}{بخش دوم : موزانه تفصیلی (\lr {Detailed Balance})}{2}{section*.5}%
+\contentsline {subsubsection}{سوال اول}{3}{section*.6}%
+\contentsline {subsubsection}{سوال دوم}{3}{section*.7}%
+\contentsline {section}{انواع \lr {Score-Matching}}{4}{section*.8}%
+\contentsline {subsection}{بخش اول}{4}{section*.9}%
+\contentsline {subsubsection}{\lr {a}}{4}{section*.10}%
+\contentsline {subsubsection}{\lr {b}}{4}{section*.11}%
+\contentsline {subsection}{بخش دوم}{5}{section*.12}%
+\contentsline {subsubsection}{\lr {a}}{5}{section*.13}%
+\contentsline {subsubsection}{\lr {b}}{5}{section*.14}%
+\contentsline {subsection}{\textcolor {red}{*} بخش سوم}{6}{section*.15}%
+\contentsline {subsubsection}{\lr {a}}{6}{section*.16}%
+\contentsline {subsubsection}{\lr {b}}{6}{section*.17}%
+\contentsline {subsubsection}{\lr {c}}{7}{section*.18}%
+\contentsline {subsubsection}{\lr {d}}{7}{section*.19}%
+\contentsline {section}{مدل های \lr {Score-Based}}{8}{section*.20}%
+\contentsline {subsection}{سوال اول}{8}{section*.21}%
+\contentsline {subsection}{سوال دوم}{8}{section*.22}%
+\contentsline {subsection}{سوال سوم}{9}{section*.23}%
+\contentsline {subsection}{سوال چهارم}{9}{section*.24}%
+\contentsline {section}{مدل های \lr {Energy-Based}}{10}{section*.25}%
+\contentsline {subsection}{سوال اول}{10}{section*.26}%
+\contentsline {subsection}{سوال دوم}{10}{section*.27}%
+\contentsline {subsection}{سوال سوم}{10}{section*.28}%
+\contentsline {section}{سوال پنجم}{10}{section*.29}%

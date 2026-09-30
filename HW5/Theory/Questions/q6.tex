@@ -1,0 +1,53 @@
+\subsection{بخش اول}
+
+\begin{latin}
+\begin{flalign*}
+    \forall p>0 : \mathbb{E}\big\lceil|X|^P\big\rceil &= \int_{0}^{\infty} pt^{p-1}\mathbb{P} (|X| > t)dt&\\
+    &\leq \int_{0}^{\infty} pt^{p-1}2\exp(-\frac{t^2}{2\sigma^2})dt \quad (\text{Subgaussian})\\
+    &= (2\sigma^2)^{\frac{p-1}{2}}\int_{0}^{\infty} pu^{\frac{p-1}{2}} 2e^{-u}\frac{\sigma}{\sqrt{2u}} du\quad(\text{Let } u=\frac{t^2}{2\sigma^2})\\
+    &=p2^{\frac{p}{2}}\sigma^p \int_{0}^{\infty} u^{\frac{p-1}{2}}e^{-u}du = 2^{\frac{p}{2}}p\sigma^p\Gamma(\frac{p}{2})\\
+    &\xrightarrow[]{p =2q} \mathbb{E}\big\lceil X^{2q}\big\rceil \leq2(2\sigma^2)^q q\Gamma(q) = 2(2\sigma^2)^q q!
+\end{flalign*}
+\end{latin}
+\subsection{بخش دوم}
+اول به رابطه زیر اشاره میکنیم :
+اگر $X_1,X_2,...,X_n$ متغیر های تصادفی باشند به نحوی که :
+\begin{equation*}
+    \log \mathbb{E}\big\lceil\exp(\lambda X_i)\big\rceil \leq \varphi(X_i), \,\forall \lambda \in[0,b),\,0<b<\infty,
+\end{equation*}
+در حالی که $\varphi(.)$ محدب باشد بر روی بازه $[0,b)$. 
+آنگاه :
+\begin{equation*}
+    \mathbb{E}\big\lceil \max_i X_i \big\rceil \leq \inf_{\lambda \in [0,b)} \bigg\{\frac{\log n + \varphi(\lambda)}{\lambda}\bigg\}.
+\end{equation*}
+\begin{tcolorbox}[colback=yellow!10!white,colframe=red!75!black,title = اثبات]
+    فرض کنید $\lambda \in (0,b)$, در نتیجه خواهیم داشت :
+    \begin{latin}
+    \begin{flalign*}
+        &\exp\{\lambda\mathbb{E}\big\lceil\max X_i\big\rceil\}, \quad \text{By Jensen's inequality}&\\
+        &\leq \mathbb{E}\big\{\exp\big\lceil\lambda \max X_i \big\rceil \big\} = \mathbb{E}\big\{ \max \exp\big\lceil \lambda X_i\big\rceil\big\},\quad \text{Monotonicity}\\
+        &\leq \sum_{i=1}^{n} \mathbb{E}\big\lceil \exp(\lambda X_i)\big\rceil \leq n\exp(\varphi\lambda)\quad \text{Assumption}
+    \end{flalign*}
+    \end{latin}
+    با لوگ گرفتن از دوطرف رابطه بالا و تقسیم بر $\lambda$ اثبات کامل میشود.
+\end{tcolorbox}
+حال به ازای متغیر های تصادفی $X_1,...,X_n \in \mathcal{SG}(\sigma^2)$,داریم که :
+\begin{flalign*}
+    &\log \mathbb{E}\big\lceil \exp(\lambda X_i)\big\rceil \leq \varphi(\lambda),\quad \varphi(\lambda) = \frac{\lambda^2\sigma^2}{2}&
+\end{flalign*}
+\begin{flalign*}
+    \mathbb{E}\big\lceil \max_{1\leq i\leq n} X_i \big\rceil &\leq \inf_{\lambda >0} \bigg\{\frac{\log n + \frac{\lambda^2\sigma^2}{2}}{\lambda}\bigg\}&\\
+    &\leq \frac{\log(n) + \frac{2\log}{\sigma^2}\frac{\sigma^2}{2}}{\sqrt{\frac{2\log(n)}{\sigma^2}}\textcolor{red}{*}}\\
+    &=\frac{2\log(n)}{\sqrt{\frac{2\log(n)}{\sigma^2}}}\\
+    &=\sqrt{2\sigma^2\log(n)} =C\sigma\sqrt{\log(n)}
+\end{flalign*}
+دلیل استفاده از مقدار بیان شده برای $\lambda$ این هست :
+\begin{flalign*}
+    &f(\lambda) = \frac{\log(n)}{\lambda} + \frac{\lambda\sigma^2}{2} \Rightarrow f'(\lambda) = -\frac{\log(n)}{\lambda^2}+\frac{\sigma^2}{2}&\\
+    &\Rightarrow f'(\lambda) =0 \Rightarrow \lambda = \sqrt{\frac{2\log (n)}{\sigma^2}}
+\end{flalign*}
+\begin{tcolorbox}[colback = colback , colframe = colframe]
+\begin{equation*}
+        \mathbb{E}\big\lceil \max_{1\leq i\leq n} X_i \big\rceil \leq \sqrt{2\sigma^2\log(n)} =C\sigma\sqrt{\log(n)}
+\end{equation*}
+\end{tcolorbox}

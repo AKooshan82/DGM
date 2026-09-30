@@ -1,0 +1,218 @@
+
+به ازای هر راس میانگین درجه برابر با $d = o(\log n)$ هست. 
+در نتیجه $p = o(\frac{\log n}{n})$. درجه هر راس از توزیع زیر پیروی میکند :
+\begin{latin}
+\begin{equation*}
+    P(\text{deg}(v) = k) = {n-1\choose k} p^k(1-p)^{n-1-k}
+\end{equation*}
+\end{latin}
+به ازای $n$ های به قدر کافی بزرگ و $p$ های به قدر کافی کوچک میتوانیم توزیع دو جمله ای بالا را با یک توزیع پوآسون با پارامتر $d = o(np)$ تقریب بزنیم. پس :
+\begin{latin}
+\begin{equation*}
+    p(\text{deg}(v) = k) \sim \frac{d^k\exp(-d)}{k!}
+\end{equation*}
+
+\begin{flalign*}
+    \Rightarrow \mathbb{P}\big\lceil \exists v,\text{deg}(v) = 10d\big\rceil &= 1- \mathbb{P}\big\lceil \forall V, \text{deg}(v) \neq 10d \big\rceil &\\
+    &= 1 - \mathbb{P}\big\lceil \text{deg}(v) \neq 10d \big\rceil^n\\
+    &= 1 - \big\lceil 1-\mathbb{P}\big\lceil \text{deg}(v) = 10d \big\rceil \big\rceil^n\\
+    &= 1 - (1 - \frac{d^{10d} \exp(-d)}{10d!})^n\\
+    &\approx 1 - (1 - \frac{1}{\sqrt{2\pi 10d }}(\frac{e}{10d})^{10d}\cdot d^{10d}\exp(-d))^n \quad(\text{Striling})\\
+    &= 1 - (1 - \frac{1}{\sqrt{2\pi 10d }}\frac{e}{10d}^{10d}\exp(-d) )^n
+\end{flalign*}
+\begin{equation*}
+    \textcolor{red}{**} d = o(\log n) \Rightarrow d\leq C\log n \Rightarrow \frac{1}{\sqrt{2\pi 10d }}(\frac{e}{10d})^{10d}\exp(-d)\leq (\frac{e}{10})^{C\log(n)} \times n^{-c'} \times C" \leq n^{c-c'} \times k \leq n^{-M}
+\end{equation*}
+\begin{flalign*}
+    &\leq 1-(1-n^{-M})^n
+\end{flalign*}
+
+\end{latin}
+
+\begin{tcolorbox}[colback=yellow!10!white,colframe=red!75!black]
+    \begin{equation*}
+        n,m > 0 \Rightarrow 0 < n^{-M} < 1 \Rightarrow (1- n^{-M})^n \xrightarrow{n\rightarrow \infty} 0
+    \end{equation*}
+    \begin{latin}
+    \begin{equation*}
+        \Rightarrow \text{W.H.P} : \mathbb{P}\big\lceil \exists v, \text{deg}(v) = 10d \big\rceil
+    \end{equation*}
+    \end{latin}
+\end{tcolorbox}
+\subsection{بخش دوم}
+در این مسئله یک گراف تصادفی
+$G \sim G(n,p)$
+داریم که درجه‌ی مورد انتظار هر رأس در آن
+\[
+d = (n-1)p = O(1)
+\]
+است. بنابراین عدد ثابتی $M>0$ وجود دارد که برای $n$های بزرگ
+\[
+d \le M
+\]
+برقرار است. درجه‌ی هر رأس $i$ را با $d_i$ نشان می‌دهیم. می‌دانیم
+\[
+d_i \sim \operatorname{Bin}(n-1,p)
+\]
+و امیدریاضی آن برابر
+\[
+\mathbb{E}[d_i] = (n-1)p = d
+\]
+است.
+
+برای متغیر دوجمله‌ای از نابرابری چرنوف استفاده می‌کنیم. اگر
+$X \sim \operatorname{Bin}(N,p)$
+با میانگین $\mu = Np$ باشد و $k \ge \mu$، آنگاه
+\[
+\Pr(X \ge k) \le e^{-\mu} \left( \frac{e\mu}{k} \right)^k .
+\]
+
+این کران را روی $d_i$ اعمال می‌کنیم. آستانه را به صورت
+\[
+k = C \cdot \frac{\log n}{\log\log n}
+\]
+در نظر می‌گیریم که در آن $C>0$ یک ثابت است که بعداً مقدارش را انتخاب می‌کنیم. در نتیجه
+\begin{align*}
+\Pr\!\left(d_i \ge C \frac{\log n}{\log\log n}\right)
+&\le e^{-d}
+\left(
+\frac{e d}{C \frac{\log n}{\log\log n}}
+\right)^{C \frac{\log n}{\log\log n}} \\
+&= e^{-d}
+\left(
+\frac{e d \log\log n}{C \log n}
+\right)^{C \frac{\log n}{\log\log n}}.
+\end{align*}
+از آن‌جا که $d \le M$، می‌توانیم $d$ را با $M$ جایگزین کنیم و به کرانی ساده‌تر برسیم:
+\[
+\Pr\!\left(d_i \ge C \frac{\log n}{\log\log n}\right)
+\le
+e^{-d}
+\left(
+\frac{e M \log\log n}{C \log n}
+\right)^{C \frac{\log n}{\log\log n}}.
+\]
+
+حال احتمال این‌که «حداقل یک رأس» درجه‌ای بزرگ‌تر از این آستانه داشته باشد را با استفاده از کران اتحادی \lr{(union bound)} می‌بندیم:
+\begin{align*}
+\Pr\Big(\exists\, i:\ d_i \ge C \frac{\log n}{\log\log n}\Big)
+&\le
+\sum_{i=1}^n
+\Pr\!\left(d_i \ge C \frac{\log n}{\log\log n}\right) \\
+&\le
+n \, e^{-d}
+\left(
+\frac{e M \log\log n}{C \log n}
+\right)^{C \frac{\log n}{\log\log n}}.
+\end{align*}
+اگر این عبارت را $T_n$ بنامیم، داریم
+\[
+T_n =
+n \, e^{-d}
+\left(
+\frac{e M \log\log n}{C \log n}
+\right)^{C \frac{\log n}{\log\log n}}.
+\]
+کافی است نشان بدهیم
+\[
+T_n \xrightarrow[n\to\infty]{} 0,
+\]
+چون در این صورت با احتمال میل‌کننده به یک، هیچ رأسی درجه‌ی بزرگ‌تر از
+$C \frac{\log n}{\log\log n}$
+نخواهد داشت و در نتیجه حداکثر درجه‌ی گراف از همین مرتبه است.
+
+برای بررسی حد، لگاریتم می‌گیریم. اگر
+$\log T_n \to -\infty$،
+آنگاه $T_n \to 0$. بنابراین
+\[
+\log T_n
+=
+\log n - d
++
+C \frac{\log n}{\log\log n}
+\log\!\left(
+\frac{e M \log\log n}{C \log n}
+\right).
+\]
+برای ساده‌سازی، ثابت را
+$C = M$
+انتخاب می‌کنیم. آن‌گاه
+\begin{align*}
+\log T_n
+&=
+\log n - d
++
+M \frac{\log n}{\log\log n}
+\log\!\left(
+\frac{e M \log\log n}{M \log n}
+\right) \\
+&=
+\log n - d
++
+M \frac{\log n}{\log\log n}
+\log\!\left(
+\frac{e \log\log n}{\log n}
+\right).
+\end{align*}
+لگاریتم داخل پرانتز را باز می‌کنیم:
+\[
+\log\!\left(
+\frac{e \log\log n}{\log n}
+\right)
+= \log e + \log(\log\log n) - \log(\log n)
+= 1 + \log(\log\log n) - \log(\log n).
+\]
+در نتیجه
+\[
+\log T_n
+=
+\log n - d
++
+M \frac{\log n}{\log\log n}
+\big(1 + \log(\log\log n) - \log(\log n)\big).
+\]
+
+حال رفتار جمله‌ی داخل پرانتز را وقتی $n$ بزرگ می‌شود بررسی می‌کنیم. چون
+$\log(\log n)$
+خیلی سریع‌تر از
+$\log(\log\log n)$
+رشد می‌کند، داریم
+\[
+1 + \log(\log\log n) - \log(\log n) \sim - \log(\log n)
+\]
+و بنابراین این جمله برای $n$های بزرگ منفی و با قدر مطلق بزرگ می‌شود. این مقدار منفی در
+$M \frac{\log n}{\log\log n}$
+ضرب می‌شود و تقریباً رفتاری شبیه
+\[
+- M \log n
+\]
+دارد. پس می‌توان نوشت
+\[
+\log T_n
+\approx
+\log n - d - M \log n
+= (1 - M)\log n - d.
+\]
+از آن‌جا که $M$ را می‌توانیم بزرگ‌تر از $1$ انتخاب کنیم، ضریب
+$1 - M$
+منفی است و در نتیجه
+$(1 - M)\log n$
+وقتی $n \to \infty$ به $-\infty$ میل می‌کند و عدد ثابت $-d$ در مقابل آن ناچیز است. بنابراین
+\[
+\log T_n \xrightarrow[n\to\infty]{} -\infty
+\quad\Rightarrow\quad
+T_n \xrightarrow[n\to\infty]{} 0.
+\]
+
+به این ترتیب احتمال «وجود یک رأس با درجه‌ی بزرگ‌تر از
+$C \frac{\log n}{\log\log n}$
+» به صفر میل می‌کند؛ یعنی
+\[
+\Pr\Big(\forall\, i:\ d_i \le C \frac{\log n}{\log\log n}\Big)
+\xrightarrow[n\to\infty]{} 1.
+\]
+پس در گراف تصادفی $G(n,p)$ با درجه‌ی مورد انتظار ثابت، حداکثر درجه‌ی گراف با احتمال بالا
+\[
+O\!\left(\frac{\log n}{\log\log n}\right)
+\]
+است.

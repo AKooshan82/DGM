@@ -1,0 +1,110 @@
+\subsection{بخش اول}
+\subsubsection{اثر هر کدام از شرایط بر روی سمپلینگ}
+\begin{enumerate}
+    \item غیرکاهشی بودن (\lr{irreducible}) :  یک شرط لازم برای وجود یک توزیع استیشنری  یکتا (\lr{Stationary}) غیرکاهشی بودن زنجیره مارکف ما میباشد یعنی بتوان از هر استیت به استیت دیگه برسیم. هدف نهایی ما هم در \lr{MCMC} رسیدن به این توزیع نهایی هست.\\
+    به عنوان مشکل احتمالی نمودار زیر را در نظر بگیرید.
+    \begin{latin}
+    \begin{figure}[!ht]
+\centering
+\resizebox{0.8\textwidth}{!}{%
+\begin{circuitikz}
+\tikzstyle{every node}=[font=\LARGE]
+\draw  (3.25,9.25) circle (0cm);
+\draw  (2.25,9.25) circle (0.75cm) node {\LARGE 1} ;
+\draw  (6,9.25) circle (0.75cm) node {\LARGE 2} ;
+\draw  (9.5,9.25) circle (0.75cm) node {\LARGE 3} ;
+\draw  (3.25,9.25) circle (0cm);
+\draw  (12.25,9.25) circle (0cm);
+\draw  (12.75,9.25) circle (0.75cm) node {\LARGE 4} ;
+\draw  (11.75,9.5) circle (0cm);
+\draw  (11.75,7) circle (0cm);
+\draw [->, >=Stealth] (8.75,9.25) -- (6.75,9.25);
+\draw [->, >=Stealth] (10.25,9.25) -- (12,9.25);
+\draw [->, >=Stealth] (3,8.75) .. controls (4,8) and (4.25,8) .. (5.25,8.75) ;
+\draw [->, >=Stealth] (5.25,9.75) .. controls (4.25,10.5) and (3.75,10.5) .. (3,9.75) ;
+\draw [->, >=Stealth] (5.75,10) .. controls (4.25,11.75) and (7.75,11.75) .. (6.25,10) ;
+\draw [->, >=Stealth] (12.5,10) .. controls (11,11.75) and (14.5,11.75) .. (13,10) ;
+\draw [->, >=Stealth] (2,10) .. controls (0.5,11.75) and (4,11.75) .. (2.5,10) ;
+\node [font=\LARGE, color={rgb,255:red,255; green,38; blue,0}] at (8,8.75) {0.5};
+\node [font=\LARGE, color={rgb,255:red,255; green,38; blue,0}] at (11,8.75) {0.5};
+\node [font=\LARGE, color={rgb,255:red,255; green,38; blue,0}] at (12.75,12) {1.0};
+\node [font=\LARGE, color={rgb,255:red,255; green,38; blue,0}] at (6,11.75) {0.1};
+\node [font=\LARGE, color={rgb,255:red,255; green,38; blue,0}] at (2.5,11.75) {0.1};
+\node [font=\LARGE, color={rgb,255:red,255; green,38; blue,0}] at (4,10.75) {0.9};
+\node [font=\LARGE, color={rgb,255:red,255; green,38; blue,0}] at (4,7.75) {0.9};
+\end{circuitikz}
+}%
+
+\label{fig:my_label}
+\end{figure}
+\end{latin}
+اگر از حالت ۴ شروع کنیم همیشه در این حالت میمونیم. پس یک توزیع استیشنری میتواند $\mathbf{\pi}=(0,0,0,1)$ باشد. همچنین اگر از یکی از دو حالت ۱ و ۲ شروع کنیم بین این دو نوسان میکنیم. پس یک توزیع استیشنری دیگر نیز میتواند $\mathbf{\pi} = (0.5,0.5,0,0)$ باشد. اگر هم از حالت ۳ شروع کنیم ممکن است به هر کدام از دو توزیع بالا برسیم.\\
+برای جلوگیری از این مشکل ، یعنی غیر یکتا بودن توزیع نهایی یا همون (\lr{target distribution}) زنجیره مارکف ما باید غیرکاهشی باشد ، یعنی بتوان از هر حالت به هر حالت دیگری رسید.
+\item \lr{aperiodic} بودن : برای یک حالت پریودش به شکل زیر تعریف می شود:
+\begin{equation*}
+    d(x) = \gcd\{n\geq1:P^n(x,x)>0 \}
+\end{equation*}
+یک زنجیره مارکف \lr{aperiodic} هست اگر $d(x) = 1$ باشد. یک شرط کافی در این زمینه وجود حلقه برگشتی به خود حالت هست. \\
+اهمیت این مورد در این هست که اگر زنجیر مارکف ما \lr{aperiodic} باشد توزیع در حد ما به توزیع \lr{stationary} همگرا میشود که یکتا هست و در \lr{MCMC} دنبال رسیدن به این توزیع هستیم.\\
+اگر زنجیر مارکف ما داری این خاصیت نباشد باز هم ممکن هست که یک توزیع \lr{stationary} یکتا وجود داشته باشد اما $P^n(x,\cdot)$ در حالت کلی به آن نمیرسد.
+\item \lr{positive recurrent} : یک فاکتور دیگه برای وجود \lr{limiting distribution} ای که برابر با $\pi$ یعنی توزیع استیشنری یکتامون هست باید در نظر بگیریم ، بازگشتی بودن زنجیرمون هست. همچنین زمان بازگشت به یک حالت خاص باید محدود باشد تا توزیع $\pi$ بتواند وجود داشته باشد.\\
+\textcolor{red}{*} : همجنین میگیم یک حالت \lr{ergodic} هست اگر \lr{aperiodic} و \lr{positive recurrent} باشد.\\
+یک مشکلی که ممکن است پیش بیاید اگر زنجیر مارکف ما \lr{positive recurrent} نباشد  به معنی عدم وجود یک توزیع ثابت نهایی هست. به عنوان مثال یک رندوم واک معمولی را بر روی اعداد صحیح در نظر بگیرید $\mathcal{X} = \{\ldots ,-2,-1,0,1,2,\ldots\}$. اگر $A_{i,i+1} = p$ احتمال حرکت به راست و $A_{i,i-1} = 1-p$ احتمال حرکت به چپ باشد و از $X_1=0$ شروع کنیم:
+\begin{enumerate}
+    \item اگر $p>0.5$ به بی نهایت میرویم و تضمینی برای برگشت نیست.
+    \item اگر $p<0.5$ باشد به منفی بینهایت میرود و باز تضمینی برای برگشت به حالت اولیه نیست.
+    \item اگر $p=0.5$ باشد آنگاه با احتمال یک به حالت اولیه برمیگردیم ولی زمان برگشتمون بی نهایت هست و نمیتوانیم توزیع ثابت نهایی داشته باشیم.
+\end{enumerate}
+\end{enumerate}
+
+%--------------------------------------------
+\subsection{بخش دوم : موزانه تفصیلی (\lr{Detailed Balance})}
+\subsubsection{سوال اول}
+اگر یک زنجیره مارکف با ماتریس گذر $A$ که در اینجا $P$ هست در موازنه تفاصلی به شکل زیر صدق کند :
+\begin{equation*}
+    \pi_iA_{ij} = \pi_jA_{ji} \rightarrow \pi(x)P(x,y)  =\pi(y)P(y,x)
+\end{equation*}
+آنگاه توزیع $\pi$ یک توزیع ثابت (\lr{stationary}) برای زنجیره فوق می باشد.
+
+اثبات این قضیه نیز ساده هست :
+\begin{flalign*}
+    &\sum_j \pi_iA_{ij} = \sum_i \pi_j A_{ji} = \pi_j \sum_{i} A_{ji} = \pi_j&\\
+    &\Rightarrow \bm{\pi} = \mathbf{A}\bm{\pi}
+\end{flalign*}
+پس این رابطه وجود یک توزیع \lr{stationary} را گارانتی میکند.
+
+\subsubsection{سوال دوم}
+این ساختار تضمین میکند که $\pi$ توزیع یکتا \lr{stationary} برای زنجیره $MH$ ما هست.
+\begin{tcolorbox}[colback=colback,colframe=colframe,title = اثبات]
+    \begin{latin}
+    \begin{flalign*}
+        &P_{MH}(y,x)= 
+        \begin{cases}
+            q(y,x)\alpha(y,x)\quad\quad &\text{if} \,\,x\neq y\\
+            q(x,x)+\sum_{x\neq y} q(y,x)(1-\alpha(y,x)) &\text{otherwise}
+        \end{cases}&
+    \end{flalign*}
+    \end{latin}
+    ماتریس گذر زنجیره ما به شکل بالا تعریف میشود. یا در مرحله بعد حالت $y$ پیشنهاد میشود و با احتمال $\alpha$ قبول میشود و میرویم به اون حالت.\\
+    یا حالت جدید همین حالت الان ما خواهد بود یا حالت جدید پیشنهاد میشود ولی با احتمال $1-\alpha$ رد میشود.\\
+    حال درون $\alpha$ دو حالت داریم. 
+    \begin{enumerate}
+        \item یا
+        \begin{flalign*}
+            &\pi(y)q(x,y)>\pi(x)q(y,x)&
+        \end{flalign*}
+        \item یا
+        \begin{flalign*}
+            &\pi(y)q(x,y)\leq\pi(x)q(y,x)&
+        \end{flalign*}
+    \end{enumerate}
+    
+    با فرض حالت دوم جلو میرویم. پس داریم
+    \begin{flalign*}
+    &\alpha(y,x) = \min(1,\underbrace{\frac{\pi(y)q(x,y)}{\pi(x)q(y,x)}}_{< 1}) < 1 \Rightarrow \alpha(x,y) = \min(1,\underbrace{\frac{\pi(x)q(y,x)}{\pi(y)q(x,y)}}_{\ge 1} )=1&\\
+        &\alpha = \min\big(1,\frac{\pi(y)q(x,y)}{\pi(x)q(y,x)} < 1\big) = \frac{\pi(y)q(x,y)}{\pi(x)q(y,x)}&\\
+        &P_{MH}(y,x) = q(y,x)\alpha(y,x) = \frac{\pi(y)}{\pi(x)}q(x,y) \Rightarrow P_{MH}(y,x)\pi(x) =\pi(y)q(x,y)\\
+        &\xrightarrow{\textcolor{red}{*}q(x,y)\times\alpha(x,y) = q(x,y) \times 1 = P_{MH}(x,y)} P_{MH}(y,x)\pi(x) = P_{MH}(x,y)\pi(y) \,\forall x,y
+    \end{flalign*}
+    چون موازنه تفصیلی برقرار هست نسبت به توزیع $\pi$ با ماتریس گذر $P_{MH}$ پس توزیع $\pi$ توزیع \lr{stationary} یکتا ما هست.
+\end{tcolorbox}

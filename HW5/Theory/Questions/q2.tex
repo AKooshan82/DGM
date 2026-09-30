@@ -1,0 +1,167 @@
+\newpage
+\section{انواع \lr{Score-Matching}}
+\subsection{بخش اول}
+\subsubsection{\lr{a}}
+
+از قضیه اساسی حساب دیفرانسیل داریم که :
+\begin{flalign*}
+    &\int_{b}^{a}f'(x)dx = f(a)-f(b)&
+\end{flalign*}
+حال داریم :
+\begin{flalign*}
+    &h(\bm{x}) = f(\bm{x})g(\bm{x})&\\
+    &\pderiv{h(\bm{x})}{x_i} = \pderiv{f(\bm{x})g(\bm{x})}{x_i} = \pderiv{f(\bm{x})}{x_i}g(\bm{x}) + f(\bm{x})\pderiv{g(\bm{x})}{x_i}\\
+    &\int_{-\infty}^{\infty} \pderiv{f(\bm{x})g(\bm{x})}{x_i} dx_i = \int_{-\infty}^{\infty} \pderiv{f(\bm{x})}{x_i}g(\bm{x}) + f(\bm{x})\pderiv{g(\bm{x})}{x_i}\\
+    &f(\bm{x}_{-i},x_i)g(\bm{x}_{-i},x_i)\Bigg|_{-\infty}^{\infty} = \lim_{a\rightarrow\infty,b\rightarrow -\infty} f(\bm{x}_{-i},a)g(\bm{x}_{-i},a) - f(\bm{x}_{-i},b)g(\bm{x}_{-i},b) \\& \hspace{8cm}= \int_{-\infty}^{\infty} \pderiv{f(\bm{x})}{x_i}g(\bm{x}) + f(\bm{x})\pderiv{g(\bm{x})}{x_i}
+\end{flalign*}
+\begin{tcolorbox}[colback = colback, colframe=colframe]
+    \begin{equation*}
+        \lim_{a\rightarrow\infty,b\rightarrow -\infty} f(\bm{x}_{-i},a)g(\bm{x}_{-i},a) - f(\bm{x}_{-i},b)g(\bm{x}_{-i},b) = \int_{-\infty}^{\infty} \pderiv{f(\bm{x})}{x_i}g(\bm{x}) + f(\bm{x})\pderiv{g(\bm{x})}{x_i}
+    \end{equation*}
+\end{tcolorbox}
+
+\subsubsection{\lr{b}}
+\begin{latin}
+\begin{flalign*}
+    L_{ESM}(\theta) &= \frac{1}{2} \mathbb{E}_{x\sim p_{data}} \left\lceil ||s_\theta(x) - s_{data}(x)||^2 \right\rceil&\\
+    &=\int p_{data}(x) \Big(\frac{1}{2}||s_\theta(x)||^2+\frac{1}{2}||s_{data}(x)||^2 -s_\theta(x)^\top s_{data}(x)\Big)dx\\
+    &=\frac{1}{2}\int \sum_i s_\theta(x_i)^2p_{data}(x) -\textcolor{red}{*} \sum _i\int  p_{data}(x)s_{\theta}(x_i)s_{data}(x_i) + \underbrace{\int \frac{1}{2} ||s_{data}(x)||^2p_{data}(x)dx}_{\text{constant wrt } \theta}
+\end{flalign*}
+\end{latin}
+\begin{flalign*}
+    &\textcolor{red}{*} - \int p_{data}(x)s_{\theta}(x_i)s_{data}(x_i) = -\int p_{data}(x)s_{\theta}(x_i)\pderiv{\log p_{data}(x)}{x_i} =  -\int s_{\theta}(x_i)\pderiv{ p_{data}(x)}{x_i} &
+\end{flalign*}
+با فرض گفته شده در صورت سوال و لم بخش اول داریم :
+\begin{flalign*}
+    &\lim _{||x||_p\rightarrow \infty} p_{data}(x)s_\theta(x) \rightarrow 0 &\\
+    &\Rightarrow \lim _{||x||_p\rightarrow \infty} p_{data}(x)s_\theta(x)  - \lim _{||x||_p\rightarrow -\infty} p_{data}(x)s_\theta(x)  =\sum_i \int s_{\theta}(x_i)\pderiv{ p_{data}(x)}{x_i} + \int p_{data}(x)\pderiv{ s_\theta (x_i)}{x_i}\\
+    & -\sum_i \int s_{\theta}(x_i)\pderiv{ p_{data}(x)}{x_i} = \sum_i \int p_{data}(x)\pderiv{ s_\theta (x_i)}{x_i} = \int p_{data}(x)\operatorname{Tr}(\nabla_x s_\theta(x))
+\end{flalign*}
+\begin{tcolorbox}[colback = colback , colframe = colframe]
+\begin{flalign*}
+    L_{ESM}(\theta) &= \frac{1}{2}\mathbb{E}_{x\sim p_{data}} \left\lceil ||s_\theta(x) - s_{data}(x)||^2 \right\rceil = \frac{1}{2}\int \sum_i s_\theta(x_i)^2p_{data}(x)\\&\hspace{7cm} + \int p_{data}(x)\operatorname{Tr}(\nabla_x s_\theta(x)) + C &\\
+    &= \mathbb{E}_{x\sim p_{data}} \left\lceil\frac{1}{2} ||s_\theta(x)||^2_2 + \operatorname{Tr}(\nabla_x s_\theta(x))\right\rceil + C = L_{ISM}(\theta) + C
+\end{flalign*}
+\end{tcolorbox}
+\subsection{بخش دوم}
+
+\subsubsection{\lr{a}}
+\begin{latin}
+\begin{flalign*}
+    L_{ESM,q_{\sigma}}(\theta) &= \mathbb{E}_{\tilde{x} \sim q_{\sigma}} \left\lceil\frac{1}{2} || s_{\theta}(\tilde x) - \nabla_{\tilde x}\log q_\sigma(\tilde x)||^2_2\right\rceil &\\
+    &=\mathbb{E}_{\tilde x\sim q_\sigma} \left\lceil \frac{1}{2} ||s_\theta(\tilde x)||^2_2 +\frac{1}{2} ||\nabla_{\tilde x} \log q_\sigma(\tilde x)||^2_2 - \langle s_\theta(\tilde x) ,\nabla_{\tilde x} \log q_\sigma(\tilde x)\rangle\right\rceil\\
+    &=\mathbb{E}_{\tilde x \sim q_\sigma} \left\lceil \frac{1}{2} ||s_\theta(\tilde x)||^2_2 -\langle s_\theta(\tilde x) ,\nabla_{\tilde x} \log q_\sigma(\tilde x)\rangle\right\rceil + \text{constant wrt } \theta
+\end{flalign*}
+\begin{flalign*}
+    S(\theta)&= \mathbb{E}_{\tilde x \sim q_\sigma} \left\lceil \langle s_\theta(\tilde x) , \nabla_{\tilde x}\log q_\sigma(\tilde x)\right\rceil =\int q_\sigma(\tilde x) \langle s_\theta(\tilde x),\frac{\nabla_{\tilde x}q_\sigma(\tilde x)}{q_\sigma (\tilde x)}\rangle d\tilde x &\\
+    &= \int \langle s_\theta(\tilde x) , \nabla_{\tilde x}q_\sigma(\tilde x)\rangle d\tilde x=\int \langle s_\theta(\tilde x),\int p_{data}(x)\nabla_{\tilde x} q_\sigma(\tilde x |x)dx\rangle d\tilde x \\
+    &=\int \langle s_\theta(\tilde x),\int\underbrace{ p_{data}(x) q_\sigma(\tilde x | x)}_{q_\sigma(\tilde x , x)}\nabla_{\tilde x} \log q_\sigma(\tilde x |x)dx\rangle d\tilde x \\
+    &= \int \int q_\sigma(x,\tilde x) \langle s_\theta(\tilde x) ,\nabla_{\tilde x}  \log q_\sigma (\tilde x | x)\rangle dxd\tilde x = \mathbb{E}_{(\tilde x,x)\sim q_\sigma(\tilde x,x)} \left\lceil \langle s_\theta(\tilde x) , \nabla_{\tilde x} \log q_\sigma(\tilde x | x)\rangle \right\rceil 
+\end{flalign*}
+\end{latin}
+\subsubsection{\lr{b}}
+\begin{latin}
+\begin{flalign*}
+    &L_{ESM,q_\sigma}(\theta) = \mathbb{E}_{\tilde x \sim q_\sigma}\left\lceil \frac{1}{2} ||s_\theta(\tilde x)||^2_2 \right\rceil - S(\theta) + \underbrace{\text{constant wrt } \theta}_{C_1}&\\
+    &L_{DSM,q_\sigma}(\theta) = \mathbb{E}_{(x,\tilde x) \sim q_\sigma(x,\tilde x)}\left\lceil \frac{1}{2}||s_\theta(\tilde x)||^2_2 +\underbrace{\frac{1}{2}||\nabla_{\tilde x}\log q_\sigma(\tilde x | x) ||^2_2}_{\text{constat wrt }\theta} - \langle s_\theta(\tilde x) , \nabla_{\tilde x} \log q_\sigma(\tilde x | x) \rangle\right\rceil\\
+    &\hspace{1.77cm}= \underbrace{\mathbb{E}_{(\tilde x,x) \sim q_\sigma(x,\tilde x)} \left\lceil  \frac{1}{2} ||s_\theta(\tilde x)||^2_2 \right\rceil}_{x \text{ integrates out}} -\underbrace{\mathbb{E}_{(\tilde x,x)\sim q_\sigma(\tilde x ,x)}\left\lceil \langle s_\theta(\tilde x) , \nabla_{\tilde x} \log q_\sigma(\tilde x |x)\rangle\right\rceil}_{S(\theta)} + \text{constant wrt }\theta\\
+    &\hspace{1.77cm}= \mathbb{E}_{\tilde x \sim q_\sigma(\tilde x)} \left\lceil  \frac{1}{2} ||s_\theta(\tilde x)||^2_2 \right\rceil - S(\theta) + \underbrace{\text{constant wrt }\theta}_{C_2}
+\end{flalign*}
+\begin{tcolorbox}[colback = colback , colframe = colframe]
+    \begin{equation*}
+        C_1-C_2 = C_3 \Rightarrow L_{ESM,q_\sigma}(\theta) = L_{DSM,q_\sigma} + C_3
+    \end{equation*}
+\end{tcolorbox}
+\end{latin}
+
+\subsection{\textcolor{red}{*} بخش سوم}
+\subsubsection{\lr{a}}
+میدانیم که :
+\begin{flalign*}
+    L_{ESSM} (\theta) &=  \frac{1}{2}\mathbb{E}_{v\sim p_v}\mathbb{E}_{x\sim p_{data}} \left\lceil || \mathbf{v}^\top s_\theta (x) - \mathbf{v}^\top s_{data}(x) ||^2_2\right\rceil&\\
+    &=\frac{1}{2} \mathbb{E}_{v\sim p_v,x\sim p_{data}} \left\lceil || \mathbf{v}^\top s_\theta(x)||^2_2 + ||\mathbf{v}^\top s_{data}(x)||^2_2 - (\mathbf{v}^\top s_\theta(x))(\mathbf{v}^\top s_{data}(x)) \right\rceil
+\end{flalign*}
+\begin{flalign*}
+    &(\mathbf{v}^\top s_\theta(x))(\mathbf{v}^\top s_{data}(x))=
+    \left\lceil v_1 , v_2, \ldots ,v_d\right\rceil \left\lceil \begin{matrix}
+        s_\theta (x_1)\\
+        s_\theta (x_2)\\
+        \vdots\\
+        s_\theta (x_d)
+    \end{matrix}
+    \right\rceil
+    \left\lceil v_1 , v_2, \ldots ,v_d\right\rceil \left\lceil \begin{matrix}
+        s_{data} (x_1)\\
+        s_{data}(x_2)\\
+        \vdots\\
+        s_{data} (x_d)
+    \end{matrix}
+    \right\rceil&\\
+    & = \sum_{j=1}^{d}\big(\sum_{i=1}^{d} v_i s_\theta(x_i)\big)v_j s_{data}(x_j)\\
+    & \Rightarrow \mathbb{E}_{v\sim p_v,x\sim p_{data}}\left\lceil  \sum_{j=1}^{d}\big(\sum_{i=1}^{d} v_i s_\theta(x_i)\big)v_j s_{data}(x_j) \right\rceil \\&= \int \int \sum_{j=1}^{d}\big(\sum_{i=1}^{d} v_i s_\theta(x_i)\big)v_j s_{data}(x_j) p_{data}(x_j) p_v(v_j) dx_jdv_j \\&\hspace{1cm}= \sum_i \sum_j \int \int v_i s_\theta(x_i)v_j \underbrace{s_{data}(x_j) p_{data}(x_j)}_{\pderiv{p_{data}(x_j)}{x_j}}p_v(v_j) dx_jdv_j\\
+    & = \sum_i \sum_j \int \int v_i s_\theta(x_i) \pderiv{p_{data}(x_j)}{x_j} v_j p_v(v_j) dx_j dv_j
+\end{flalign*}
+با فرض اینکه $\lim_{||x|| \rightarrow \infty}s_\theta(x)p_{data}(x) = 0$ :
+\begin{flalign*}
+    &\int s_\theta(x_i) \pderiv{p_{data}(x_j)}{x_j} dx_j = -\int p_{data}(x_j) \pderiv{s_\theta(x_i)}{x_j} dx_j &\\
+    & - \sum_i \sum_j \int \int v_i s_\theta(x_i) \pderiv{p_{data}(x_j)}{x_j} v_j p_v(v_j) dx_j dv_j =  \sum_i \sum_j \int \int v_i p_{data}(x_j) \pderiv{s_\theta(x_i)}{x_j} v_j p_v(v_j) dx_j dv_j\\
+    & = \int \int \sum_i \sum_j v_i \pderiv{s_\theta(x_i)}{x_j} v_j p_v(v_j) p_{data}(x_j) dx_j dv_j \\&= \int \int \mathbf{v}^\top \nabla_x s_\theta(x) \mathbf{v} p_v(v_j) p_{data}(x_j) dx_j dv_j = \mathbb{E}_{v\sim p_v , x \sim p_{data}} \left\lceil \mathbf{v}^\top \nabla_x s_\theta(x) \mathbf{v}\right \rceil
+\end{flalign*}
+\begin{tcolorbox}[colback = colback , colframe = colframe]
+    \begin{equation*}
+            -\mathbb{E}_{v\sim p_v , x \sim p_{data}}\left\lceil (\mathbf{v}^\top s_\theta(x))(\mathbf{v}^\top s_{data}(x)) \right\rceil = \mathbb{E}_{v\sim p_v , x \sim p_{data}} \left\lceil \mathbf{v}^\top \nabla_x s_\theta(x) \mathbf{v}\right \rceil
+    \end{equation*}
+\end{tcolorbox}
+\subsubsection{\lr{b}}
+\begin{latin}
+\begin{flalign*}
+    &L_{ESSM}(\theta) = \frac{1}{2} \mathbb{E}_{v\sim p_v,x\sim p_{data}} \left\lceil || \mathbf{v}^\top s_\theta(x)||^2_2  + \underbrace{||\mathbf{v}^\top s_{data}(x)||^2_2}_{\text{constant wrt } \theta} - (\mathbf{v}^\top s_\theta(x))(\mathbf{v}^\top s_{data}(x)) \right\rceil&\\
+    & L_{ESSM} (\theta) = \frac{1}{2} \mathbb{E}_{v\sim p_v,x\sim p_{data}} \left\lceil || \mathbf{v}^\top s_\theta(x)||^2_2 \underbrace{- (\mathbf{v}^\top s_\theta(x))(\mathbf{v}^\top s_{data}(x))}_{\text{from a =} \mathbf{v}^\top \nabla_x s_\theta(x) \mathbf{v}}\right\rceil + \text{constant wrt } \theta\\
+    &\hspace{1.75cm}= \frac{1}{2} \mathbb{E}_{v\sim p_v,x\sim p_{data}} \left\lceil || \mathbf{v}^\top s_\theta(x)||^2_2 + \mathbf{v}^\top \nabla_x s_\theta(x) \mathbf{v} \right\rceil + \text{constant wrt } \theta
+\end{flalign*}
+\begin{tcolorbox}[colback = colback , colframe = colframe]
+    \begin{equation*}
+    L_{ESSM}(\theta) = L_{ISSM}(\theta) + C
+    \end{equation*}
+\end{tcolorbox}
+\end{latin}
+\subsubsection{\lr{c}}
+حقیقتا بدون هیچگونه منبع ای سخت بود برام !
+\subsubsection{\lr{d}}
+\begin{latin}
+\begin{enumerate}
+    \item \begin{flalign*}
+    L_{ESSM}(\theta) &= \frac{1}{2} \mathbb{E}_{v\sim p_v,x\sim p_{data}}\left\lceil (v^\top \triangle s(x))^2\right\rceil&\\
+    &=\frac{1}{2}\mathbb{E}_{v\sim p_v,x\sim p_{data}}\left\lceil \triangle s(x)^\top v v^\top \triangle s(x) \right\rceil \\
+    &=\frac{1}{2}\mathbb{E}_{x\sim p_{data}}\left\lceil \triangle s(x)^\top \underbrace{\mathbb{E}_{v\sim p_v}\left\lceil v v^\top \right\rceil}_{I_D} \triangle s(x) \right\rceil\\
+    &= \frac{1}{2}\mathbb{E}_{x\sim p_{data}} \left\lceil \triangle s(x)^\top \triangle s(x) \right\rceil = \frac{1}{2}\mathbb{E}_{x\sim p_{data}} \left\lceil ||\triangle s(x)||^2_2 \right\rceil = L_{ESM}(\theta)
+\end{flalign*}
+    \item \begin{flalign*}
+        &\mathbb{E}[vv^\top] = \begin{cases}
+            \mathbb{E}[v_i^2],\quad i=j,\\
+            \mathbb{E}[v_i\cdot v_j],\quad i\neq j
+        \end{cases}&\\
+        &v\sim \text{Rademacher }\Rightarrow
+        \begin{cases}  \mathbb{E}[v_i^2] = P(v_i = 1) \times v_i^2 + P(v_i = -1) \times v_i^2 = 1\\
+            \mathbb{E}[v_i\cdot v_j] = -\frac{1}{4}-\frac{1}{4}+\frac{1}{4}+\frac{1}{4} = 0 
+        \end{cases}\\
+    \end{flalign*}
+    \begin{tcolorbox}[colback= colback , colframe = colframe]
+        \begin{equation*}
+        \Rightarrow \mathbb{E}[vv^\top] = \begin{cases}
+            1,\quad i=j,\\
+            0,\quad i\neq j
+        \end{cases} = I_D
+                \end{equation*}
+    \end{tcolorbox}
+    \begin{flalign*}
+        &v\sim \mathcal{N}(v|0,I_D) \Rightarrow C_{vv} = \mathbb{E}[(v-\mathbb{E}[v])(v-\mathbb{E}[v])^\top]&\\
+        &\mathbb{E}[v] = 0 \Rightarrow C_{vv} = \mathbb{E}[vv^\top] = I_D
+    \end{flalign*}
+    \begin{tcolorbox}[colback= colback,colframe= colframe]
+        \begin{equation*}
+        v\sim \mathcal{N}(v|0,I_D) \Rightarrow C_{vv} = \mathbb{E}[vv^\top] = I_D
+        \end{equation*}
+    \end{tcolorbox}
+\end{enumerate}
+\end{latin}

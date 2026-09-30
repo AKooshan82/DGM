@@ -1,0 +1,55 @@
+
+اگر بخواهیم با شرایط سوال قبل این رابطه را اثبات کنیم از نابرابری هولدر داریم که :
+\begin{equation*}
+    \mathbb{E}\big\lceil|XY|\big\rceil \leq \mathbb{E}\big\lceil |X|^p\big\rceil^\frac{1}{p} \mathbb{E}\big\lceil |Y|^q\big\rceil^\frac{1}{q}
+\end{equation*}
+\begin{tcolorbox}[colback=yellow!10!white,colframe=red!75!black, title = اثبات]
+     از نابرابری یونگ داریم که :
+     \begin{flalign*}
+         &x,y\geq 0 ,\quad \frac{1}{p} +\frac{1}{q} = 1\Rightarrow x \leq \frac{x^p}{p} + \frac{y^q}{q}&
+     \end{flalign*}
+     حال تابع زیر را در نظر بگیرید : 
+     \begin{flalign*}
+         &f(x,y) =\frac{x^p}{p} + \frac{y^q}{q} -xy &
+     \end{flalign*}
+     به ازای
+     $p,q \geq 1$
+     و 
+     $x,y \geq 0$
+     محدب هست. با مینیموم کردن بر روی $x$ خواهیم داشت که :
+     \begin{flalign*}
+        &\frac{d}{dx}f(x,y) = x^{p-1}-y \Rightarrow x = y^\frac{1}{p-1} = y^{q-1}&\\
+        &\Rightarrow f(x) \geq \frac{y^{p(q-1)}}{p} + \frac{y^q}{q} - y^{(q-1)+1} = \frac{y^q}{q} + (1-\frac{1}{q})y^q = 0\\
+        &\Rightarrow \frac{x^p}{p} + \frac{y^q}{q} - xy \geq 0 \Rightarrow \frac{x^p}{p} +\frac{y^q}{q} \geq xy
+     \end{flalign*}
+     از نابرابری یونگ برای هر دو متغیر رندوم داریم که :
+ \end{tcolorbox}
+ \begin{tcolorbox}[colback=yellow!10!white,colframe=red!75!black]
+    \begin{flalign*}
+        &\frac{|XY|}{\mathbb{E}\big\lceil |X|^p \big\rceil^\frac{1}{p}\mathbb{E}\big\lceil |Y|^q \big\rceil^\frac{1}{q}} \leq \frac{1}{p}\frac{|X|^p}{\mathbb{E}\big\lceil |X|^p \big\rceil } + \frac{1}{q}\frac{|Y|^q}{\mathbb{E}\big\lceil |Y|^q \big\rceil}&\\
+        &\Rightarrow \frac{\mathbb{E}\big\lceil |XY| \big\rceil}{\mathbb{E}\big\lceil |X|^p \big\rceil^\frac{1}{p} \mathbb{E}\big\lceil |Y|^q\big\rceil^\frac{1}{q}} \leq \frac{1}{p}\frac{\mathbb{E}\big\lceil |X|^p \big\rceil}{\mathbb{E}\big\lceil |X|^p \big\rceil} + \frac{1}{q} \frac{\mathbb{E}\big\lceil |Y|^q \big\rceil}{\mathbb{E}\big\lceil |Y|^q \big\rceil} = \frac{1}{p} + \frac{1}{q} = 1\\
+        & \Rightarrow \mathbb{E}\big\lceil|XY|\big\rceil \leq \mathbb{E}\big\lceil |X|^p\big\rceil^\frac{1}{p} \mathbb{E}\big\lceil |Y|^q\big\rceil^\frac{1}{q}
+     \end{flalign*}
+ \end{tcolorbox}
+ \textbf{لم ۱ :} 
+ \begin{equation*}
+    \mathbb{E}\big\lceil |Z|^2 \big\rceil \leq \mathbb{E}\big\lceil |Z| \big\rceil^\frac{1}{2} \mathbb{E}\big\lceil |Z|^3 \big\rceil^\frac{1}{2}
+ \end{equation*}
+ \begin{tcolorbox}[colback=yellow!10!white,colframe=red!75!black,title = اثبات]
+    اگر $X = |Z|^\frac{1}{2}$ و $Y = |Z|^\frac{3}{2}$ و$p=q=2$آنگاه :
+    \begin{flalign*}
+        &\mathbb{E}\big\lceil |Z|^2 \big\rceil \leq \mathbb{E}\big\lceil |Z| \big\rceil^\frac{1}{2} \mathbb{E}\big\lceil |Z|^3 \big\rceil^\frac{1}{2}&
+        \\
+        &\Rightarrow ||Z||_2 \leq ||Z||_1^\frac{1}{4} ||Z||_3^\frac{3}{4} \Rightarrow ||Z||_1 \geq (\frac{||Z||_2}{||Z||_3^\frac{3}{4}})^4 = \frac{||Z||_2^4}{||Z||_3^3}&
+    \end{flalign*}
+ \end{tcolorbox}
+ حال اگر $Z = a^\top X$ باشد داریم :
+ \begin{tcolorbox}[colback=yellow!10!white,colframe=red!75!black]
+ \begin{flalign*}
+    &||a^\top X||_1 \geq  \frac{||a^\top X||_2^4}{||a^\top X||_3^3} = \frac{||a||_2^4}{CK\sqrt{3}||a||_2^3} = (CK\sqrt{3})^{-1}||a||_2&
+ \end{flalign*}
+\end{tcolorbox}
+  برای کران بالا نیز میتوانیم از اثبات مسیله ۷ استفاده کنیم ولی از نابرابری جنسن برای توابع معقر استفاده کنیم چون اینجا نرم یک هست.
+
+
+ 
